@@ -1,14 +1,19 @@
 <template>
   <div id="app">
     <Home/>
+    <Starships/>
   </div>
 </template>
 
 <script>
 import Home from "./components/Home.vue";
+import Starships from "./components/Starships.vue";
 export default {
   name: "App",
-  components: { Home },
+  components: { 
+    Home, 
+    Starships 
+  },
   data() {
     return {
       employees: []
