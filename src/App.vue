@@ -1,17 +1,25 @@
 <template>
   <div id="app">
-    <img width="25%" src="./assets/logo.png">
-    <HelloWorld msg="Hello Vue in CodeSandbox!" />
+    <Home/>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
-
+import Home from "./components/Home.vue";
 export default {
   name: "App",
-  components: {
-    HelloWorld
+  components: { Home },
+  data() {
+    return {
+      employees: []
+    };
+  },
+  mounted() {
+    fetch("https://swapi.co/api/films/", { method: "get" })
+      .then(res => {
+        return res.json();
+      })
+      .then(res => console.log(res));
   }
 };
 </script>
@@ -23,6 +31,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 0;
 }
 </style>
