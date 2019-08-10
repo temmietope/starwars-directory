@@ -9,7 +9,7 @@
                 <span>Find your favorite Characters, Films, Species, Starships and Planets</span>
             </section>
             <section class="search">
-                <input type="text" v-model="search" placeholder="Enter a search item"/>
+                <input type="text" placeholder="Enter a search item"/>
             </section>
         </div>
     </div>
