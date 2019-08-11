@@ -16,13 +16,6 @@ export default {
       employees: []
     };
   },
-  mounted() {
-    fetch("https://swapi.co/api/films/", { method: "get" })
-      .then(res => {
-        return res.json();
-      })
-      .then(res => console.log(res));
-  }
 };
 </script>
 
