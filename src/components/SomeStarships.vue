@@ -1,0 +1,83 @@
+<template>
+    <div class="starships">
+        <h1>Popular Starships</h1>
+        <hr/>
+        <div class="flex-container">
+        <div class="starships-intro-div">
+          <div class="starships-intro" v-for="(starship, index) in starships" v-if="index <= 5" :key="index" >
+            <img alt="starship-img" :src="getImgUrl(index+1)"/>
+            <span>The {{starship.name}} is of the model {{starship.model}} and was manufactured by {{starship.manufacturer}}</span>
+            <button>Read More</button>
+          </div>
+        </div>
+        </div>
+        <button @click="showAllStarships">VIEW MORE</button>
+
+    </div>
+</template>
+
+<script>
+export default {
+  name: "SomeStarships",
+  props: {
+    starships: Array
+  },
+  methods: {
+    getImgUrl(index) {
+      return require("../assets/starship-" + index + ".jpg");
+    }
+  },
+  showAllStarships(){
+    console.log(e)
+  }
+};
+</script>
+
+<style scoped>
+.starships {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+}
+h1 {
+  color: rgb(34, 33, 33);
+  margin-bottom: none;
+}
+hr {
+  width: 100px;
+  height: 6px;
+  background-color: rgb(34, 33, 33);
+  padding-top: none;
+}
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.starships-intro-div {
+  display: grid;
+  grid-template-columns: 33.3% 33.3% 33.3%;
+  max-width: 1200px;
+
+}
+.starships-intro {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  width: 380px;
+  height: 430px;
+  border: 1px solid black;
+  margin: 20px 40px;
+}
+img {
+  height: 300px;
+  width: 350px;
+}
+</style>
+
+
+

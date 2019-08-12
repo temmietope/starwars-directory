@@ -64,7 +64,7 @@ img {
 .search input[type="text"] {
   height: 50px;
   width: 700px;
-  border-radius: 4px;
+  border-radius: 7px;
   border: none;
   font-size: 30px;
   padding-left: 10px;

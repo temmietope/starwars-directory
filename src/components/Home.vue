@@ -1,21 +1,23 @@
 <template>
-  <div>
+  <div class="home">
     <Header/>
+    <div class="body">
     <Starships v-if="starships.length" :starships="starships"/>
     <Planets v-if="planets.length" :planets="planets"/>
     <Characters v-if="characters.length" :characters="characters"/>
+  </div>
   </div>
 </template>
 
 <script>
 import Header from "./Header.vue";
-import Starships from "./Starships.vue";
-import Planets from "./Planets.vue";
-import Characters from "./Characters.vue"
+import Starships from "./SomeStarships.vue";
+import Planets from "./SomePlanets.vue";
+import Characters from "./SomeCharacters.vue"
 
 export default {
   name: "Home",
-  components: { Header, Starships, Planets, Characters },
+  components: { Header, SomeStarships, SomePlanets, SomeCharacters },
   data(){
     return{
        starships: [],
@@ -62,18 +64,4 @@ export default {
 </script>
 
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
 </style>
