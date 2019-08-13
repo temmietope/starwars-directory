@@ -1,34 +1,38 @@
 <template>
-    <div class="planets">
-        <h1>Popular Planets</h1>
+    <div class="characters">
+        <h1>PopularCharacters</h1>
         <hr/>
         <div class="flex-container">
-        <div class="planets-intro-div">
-        <div class="planets-intro" v-for="(planet, index) in planets" v-if="index <= 2" :key="index" >
-           <img alt="planet-img" :src="getImgUrl(index+1)"/>
-           <span>{{planet.name}}</span>
+        <div class="characters-intro-div">
+       <div class="characters-intro" v-for="(character, index) in characters" v-if="index <= 3" :key="index" >
+           <div><img alt="character-img" :src="getImgUrl(index+1)"/></div>
+           <div>
+             <h5>{{character.name}}</h5>
+             <span>{{character.name}} has featured in {{character.films.length}} films.</span>
+            </div>
         </div>
         </div>
         </div>
+        <router-link to="/charcters"><button>VIEW MORE</button></router-link>
     </div>
 </template>
 
 <script>
 export default {
-  name: "SomePlanets",
+  name: "Characters",
   props: {
-    planets: Array,
+    characters: Array,
   },
   methods:{
     getImgUrl(index) {
-    return require('../assets/planet-'+(index)+'.jpg')
+    return require('../../assets/character-'+(index)+'.jpg')
 }
   }
 
 };
 </script>
 <style scoped>
-.planets {
+.characters {
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -51,31 +55,23 @@ hr {
   align-items: center;
 
 }
-.planets-intro-div {
+.characters-intro-div {
   display: grid;
-  grid-template-columns: 33.3% 33.3% 33.3%;
-  max-width: 1200px;
+  grid-template-columns: 50% 50%;
 
 }
-.planets-intro {
+.characters-intro {
   display: flex;
-  flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  width: 380px;
   height: 430px;
   border: 1px solid black;
   margin: 20px 40px;
-  position:relative;
+  padding: 30px;
 }
 img {
-  height: 380px;
+  height: 300px;
   width: 350px;
-  position:relative
-}
-span{
-  position: absolute;
-  color: white;
 }
 </style>
 

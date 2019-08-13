@@ -1,21 +1,21 @@
 <template>
   <div id="app">
-    <!-- <router-view/> -->
-    <Home/>
+    <router-view/>
   </div>
 </template>
 
 <script>
 import Home from "./components/Home.vue";
+import CharactersIndex from "./components/Characters/index.vue";
+import StarshipsIndex from "./components/Starships/index.vue";
+import PlanetsIndex from "./components/Planets/index.vue";
 export default {
   name: "App",
-  components: { 
+  components: {
     Home, 
-  },
-  data() {
-    return {
-      employees: []
-    };
+    CharactersIndex,
+    StarshipsIndex,
+    PlanetsIndex,
   },
 };
 </script>

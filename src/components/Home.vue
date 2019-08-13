@@ -11,13 +11,13 @@
 
 <script>
 import Header from "./Header.vue";
-import Starships from "./SomeStarships.vue";
-import Planets from "./SomePlanets.vue";
-import Characters from "./SomeCharacters.vue"
+import Starships from "./Starships/Starships.vue";
+import Planets from "./Planets/Planets.vue";
+import Characters from "./Characters/Characters.vue"
 
 export default {
   name: "Home",
-  components: { Header, SomeStarships, SomePlanets, SomeCharacters },
+  components: { Header, Starships, Planets, Characters },
   data(){
     return{
        starships: [],

@@ -4,6 +4,6 @@
 
 <script>
 export default {
-    name: "Starships"
+    name: "CharactersIndex"
 }
 </script>
