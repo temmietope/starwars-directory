@@ -7,7 +7,7 @@
             <div class="starships-intro" v-for="(starship, index) in starships" v-if="index <= 5" :key="index" >
               <img alt="starship-img" :src="getImgUrl(index+1)"/>
               <span>The {{starship.name}} is of the model {{starship.model}} and was manufactured by {{starship.manufacturer}}.</span>
-              <button>Read More</button>
+              <router-link :to="{ name: 'Details', params: {moreDetails: {...starship, imgUrl:getImgUrl(index+1)}, arrayList:starships }  }"><button>Read More</button></router-link>
             </div>
           </div>
         </div>
@@ -26,8 +26,7 @@ export default {
     getImgUrl(index) {
       return require("../../assets/starship-" + index + ".jpg");
     }
-  },
-  
+  }
 };
 </script>
 
@@ -53,13 +52,11 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 .starships-intro-div {
   display: grid;
   grid-template-columns: 33.3% 33.3% 33.3%;
   max-width: 1200px;
-
 }
 .starships-intro {
   display: flex;
