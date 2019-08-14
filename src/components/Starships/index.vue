@@ -7,7 +7,7 @@
             <div>
                 <b-card
                     :title= "starship.name"
-                    :img-src= "url"
+                    :img-src= "getImageUrl()"
                     img-alt="Image"
                     img-top
                     tag="article"
@@ -18,7 +18,7 @@
                     The {{starship.name}} is of the model {{starship.model}} and was manufactured by {{starship.manufacturer}}.
                     </b-card-text>
 
-                    <b-button href="#" variant="primary">Read More</b-button>
+                    <router-link :to="{ name: 'Details', params: {moreDetails: {...starship, imgUrl:getImageUrl()},arrayList:starships}}"><b-button variant="primary">Read More</b-button></router-link>
                 </b-card>
             </div>
         </div>
@@ -36,8 +36,8 @@ export default {
   data() {
     return {
       starships: [],
-      allStarshipsFromAPI: "",
-      url: this.getImageUrl()
+      allStarshipsFromAPI: ""
+      // url: this.getImageUrl()
     };
   },
   methods: {
