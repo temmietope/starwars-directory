@@ -4,6 +4,7 @@ import Home from "./components/Home.vue";
 import CharactersIndex from "./components/Characters/index.vue";
 import StarshipsIndex from "./components/Starships/index.vue";
 import PlanetsIndex from "./components/Planets/index.vue";
+import Details from "./components/Details.vue";
 
 Vue.use(Router);
 
@@ -19,8 +20,7 @@ export default new Router({
     {
       path: "/starships/",
       name: "StarshipsIndex",
-      component: StarshipsIndex,
-      // props: true
+      component: StarshipsIndex
     },
     {
       path: "/characters",
@@ -31,6 +31,12 @@ export default new Router({
       path: "/planets",
       name: "PlanetsIndex",
       component: PlanetsIndex
+    },
+    {
+      path: "/details/:moreDetails/:arrayList",
+      name: "Details",
+      component: Details,
+      props: true
     }
   ]
 });
