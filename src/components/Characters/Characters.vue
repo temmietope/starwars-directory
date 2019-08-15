@@ -5,7 +5,7 @@
         <div class="flex-container">
         <div class="characters-intro-div">
        <div class="characters-intro" v-for="(character, index) in characters" v-if="index <= 3" :key="index" >
-           <div><img alt="character-img" :src="getImgUrl(index+1)"/></div>
+           <div><img alt="character-img" :src="character.imgUrl"/></div>
            <div>
              <h5>{{character.name}}</h5>
              <span>{{character.name}} has featured in {{character.films.length}} films.</span>
