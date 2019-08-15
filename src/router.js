@@ -33,7 +33,7 @@ export default new Router({
       component: PlanetsIndex
     },
     {
-      path: "/details/:moreDetails/:arrayList",
+      path: "/details/:moreDetails/arrayList/:index",
       name: "Details",
       component: Details,
       props: true
