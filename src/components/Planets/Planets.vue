@@ -5,7 +5,7 @@
         <div class="flex-container">
         <div class="planets-intro-div">
         <div class="planets-intro" v-for="(planet, index) in planets" v-if="index <= 2" :key="index" >
-           <img alt="planet-img" :src="getImgUrl(index+1)"/>
+           <img alt="planet-img" :src="planet.imgUrl"/>
            <span>{{planet.name}}</span>
         </div>
         </div>
