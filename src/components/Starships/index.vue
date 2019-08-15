@@ -7,7 +7,7 @@
             <div>
                 <b-card
                     :title= "starship.name"
-                    :img-src= "getImageUrl()"
+                    :img-src= "starship.imgUrl"
                     img-alt="Image"
                     img-top
                     tag="article"
@@ -18,7 +18,7 @@
                     The {{starship.name}} is of the model {{starship.model}} and was manufactured by {{starship.manufacturer}}.
                     </b-card-text>
 
-                    <router-link :to="{ name: 'Details', params: {moreDetails: {...starship, imgUrl:getImageUrl()},arrayList:starships}}"><b-button variant="primary">Read More</b-button></router-link>
+                    <router-link :to="{ name: 'Details', params: {moreDetails: starship ,arrayList:starships, index: index}}"><b-button variant="primary">Read More</b-button></router-link>
                 </b-card>
             </div>
         </div>
@@ -37,7 +37,6 @@ export default {
     return {
       starships: [],
       allStarshipsFromAPI: ""
-      // url: this.getImageUrl()
     };
   },
   methods: {
@@ -45,21 +44,33 @@ export default {
       const res = await fetch("https://swapi.co/api/starships/?format=json");
       const resultsFromAPI = await res.json();
       this.allStarshipsFromAPI = resultsFromAPI;
-      this.starships = resultsFromAPI.results;
+      let starshipsA = resultsFromAPI.results;
+      starshipsA.forEach(a => {
+        a.imgUrl = this.getImageUrl();
+      });
+      this.starships = starshipsA;
     },
     async loadNextPage() {
       let nextPage = this.allStarshipsFromAPI["next"];
       const res = await fetch(nextPage);
       const resultsFromAPI = await res.json();
       this.allStarshipsFromAPI = resultsFromAPI;
-      this.starships = resultsFromAPI.results;
+      let starshipsA = resultsFromAPI.results;
+      starshipsA.forEach(a => {
+        a.imgUrl = this.getImageUrl();
+      });
+      this.starships = starshipsA;
     },
     async loadPreviousPage() {
       let previousPage = this.allStarshipsFromAPI["previous"];
       const res = await fetch(previousPage);
       const resultsFromAPI = await res.json();
       this.allStarshipsFromAPI = resultsFromAPI;
-      this.starships = resultsFromAPI.results;
+      let starshipsA = resultsFromAPI.results;
+      starshipsA.forEach(a => {
+        a.imgUrl = this.getImageUrl();
+      });
+      this.starships = starshipsA;
     },
     getImageUrl() {
       let rand = Math.round(Math.random(5));

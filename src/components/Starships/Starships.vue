@@ -5,9 +5,9 @@
         <div class="flex-container">
           <div class="starships-intro-div">
             <div class="starships-intro" v-for="(starship, index) in starships" v-if="index <= 5" :key="index" >
-              <img alt="starship-img" :src="getImgUrl(index+1)"/>
+              <img alt="starship-img" :src="starship.imgUrl"/>
               <span>The {{starship.name}} is of the model {{starship.model}} and was manufactured by {{starship.manufacturer}}.</span>
-              <router-link :to="{ name: 'Details', params: {moreDetails: {...starship, imgUrl:getImgUrl(index+1)}, arrayList:starships }  }"><button>Read More</button></router-link>
+              <router-link :to="{ name: 'Details', params: {moreDetails: starship, arrayList:starships, index: index }  }"><button>Read More</button></router-link>
             </div>
           </div>
         </div>
@@ -19,14 +19,18 @@
 <script>
 export default {
   name: "Starships",
+  data() {
+    return {
+      newStarshipArray: []
+    };
+  },
   props: {
     starships: Array
   },
   methods: {
-    getImgUrl(index) {
-      return require("../../assets/starship-" + index + ".jpg");
-    }
-  }
+    
+  },
+  
 };
 </script>
 
