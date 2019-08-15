@@ -31,7 +31,11 @@ export default {
       console.log(res)
       const starshipsFromAPI = await res.json();
       console.log(starshipsFromAPI)
-      this.starships = starshipsFromAPI.results
+      let starshipsA = starshipsFromAPI.results;
+      starshipsA.forEach((a)=>{
+        a.imgUrl= this.getStarshipImgUrl()
+      })
+      this.starships= starshipsA
       console.log(this.starships)
     },
 
@@ -40,7 +44,11 @@ export default {
       console.log(res)
       const planetsFromAPI = await res.json();
       console.log(planetsFromAPI)
-      this.planets = planetsFromAPI.results
+      let planetsA = planetsFromAPI.results;
+      planetsA.forEach((a)=>{
+        a.imgUrl= this.getPlanetImgUrl()
+      })
+      this.planets= planetsA
       console.log(this.planets)
     },
 
@@ -49,10 +57,54 @@ export default {
       console.log(res)
       const charactersFromAPI = await res.json();
       console.log(charactersFromAPI)
-      this.characters = charactersFromAPI.results
+      let charactersA = charactersFromAPI.results;
+       charactersA.forEach((a)=>{
+        a.imgUrl= this.getCharacterImgUrl()
+      })
+      this.characters= charactersA
       console.log(this.characters)
+    },
+
+    getStarshipImgUrl() {
+      let rand = Math.round(Math.random(5));
+      const starship1 = require("../assets/starship-1.jpg");
+      const starship2 = require("../assets/starship-2.jpg");
+      const starship3 = require("../assets/starship-3.jpg");
+      const starship4 = require("../assets/starship-4.jpg");
+      const starship5 = require("../assets/starship-5.jpg");
+      const starship6 = require("../assets/starship-6.jpg");
+      const starshipImageUrl = [
+        starship1,
+        starship2,
+        starship3,
+        starship4,
+        starship5,
+        starship6
+      ];
+      return starshipImageUrl[rand];
+    },
+    getPlanetImgUrl(){
+      let rand = Math.round(Math.random(2));
+      const planet1 = require("../assets/planet-1.jpg")
+      const planet2 = require("../assets/planet-2.jpg")
+      const planet3 = require("../assets/planet-3.jpg")
+      const planetImageUrl=[
+        planet1, planet2, planet3
+      ]
+      return planetImageUrl[rand]
+    },
+    getCharacterImgUrl(){
+      let rand = Math.round(Math.random(2));
+      const character1 = require("../assets/character-1.jpg")
+      const character2 = require("../assets/character-2.jpg")
+      const character3 = require("../assets/character-3.jpg")
+      const character4 = require("../assets/character-4.jpg")
+
+      const characterImageUrl=[
+        character1, character2, character3, character4
+      ]
+      return characterImageUrl[rand]
     }
-    
   },
   created(){
     this.getStarships();
