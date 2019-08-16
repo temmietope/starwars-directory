@@ -1,5 +1,7 @@
 <template>
     <div class="characters">
+    <Header/>
+
         <h1>PopularCharacters</h1>
         <hr/>
         <div class="flex-container">
@@ -13,7 +15,7 @@
         </div>
         </div>
         </div>
-        <router-link to="/charcters"><button>VIEW MORE</button></router-link>
+        <router-link to="/characters"><button>VIEW MORE</button></router-link>
     </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Header/>
+    <Header @display:results="displayResults" @clear:page ="clearPage"/>
     <div class="body">
     <Starships v-if="starships.length" :starships="starships"/>
     <Planets v-if="planets.length" :planets="planets"/>
@@ -13,56 +13,57 @@
 import Header from "./Header.vue";
 import Starships from "./Starships/Starships.vue";
 import Planets from "./Planets/Planets.vue";
-import Characters from "./Characters/Characters.vue"
+import Characters from "./Characters/Characters.vue";
 
 export default {
   name: "Home",
   components: { Header, Starships, Planets, Characters },
-  data(){
-    return{
-       starships: [],
-       planets: [],
-       characters: []
-    }
+  data() {
+    return {
+      starships: [],
+      planets: [],
+      characters: [],
+      searchedResults: []
+    };
   },
   methods: {
-    async getStarships(){
-      const res= await(fetch("https://swapi.co/api/starships/"))
-      console.log(res)
+    async getStarships() {
+      const res = await fetch("https://swapi.co/api/starships/");
+      console.log(res);
       const starshipsFromAPI = await res.json();
-      console.log(starshipsFromAPI)
+      console.log(starshipsFromAPI);
       let starshipsA = starshipsFromAPI.results;
-      starshipsA.forEach((a)=>{
-        a.imgUrl= this.getStarshipImgUrl()
-      })
-      this.starships= starshipsA
-      console.log(this.starships)
+      starshipsA.forEach(a => {
+        a.imgUrl = this.getStarshipImgUrl();
+      });
+      this.starships = starshipsA;
+      console.log(this.starships);
     },
 
-    async getPlanets(){
-      const res= await(fetch("https://swapi.co/api/planets/"))
-      console.log(res)
+    async getPlanets() {
+      const res = await fetch("https://swapi.co/api/planets/");
+      console.log(res);
       const planetsFromAPI = await res.json();
-      console.log(planetsFromAPI)
+      console.log(planetsFromAPI);
       let planetsA = planetsFromAPI.results;
-      planetsA.forEach((a)=>{
-        a.imgUrl= this.getPlanetImgUrl()
-      })
-      this.planets= planetsA
-      console.log(this.planets)
+      planetsA.forEach(a => {
+        a.imgUrl = this.getPlanetImgUrl();
+      });
+      this.planets = planetsA;
+      console.log(this.planets);
     },
 
-    async getCharacters(){
-      const res= await(fetch("https://swapi.co/api/people/"))
-      console.log(res)
+    async getCharacters() {
+      const res = await fetch("https://swapi.co/api/people/");
+      console.log(res);
       const charactersFromAPI = await res.json();
-      console.log(charactersFromAPI)
+      console.log(charactersFromAPI);
       let charactersA = charactersFromAPI.results;
-       charactersA.forEach((a)=>{
-        a.imgUrl= this.getCharacterImgUrl()
-      })
-      this.characters= charactersA
-      console.log(this.characters)
+      charactersA.forEach(a => {
+        a.imgUrl = this.getCharacterImgUrl();
+      });
+      this.characters = charactersA;
+      console.log(this.characters);
     },
 
     getStarshipImgUrl() {
@@ -83,35 +84,51 @@ export default {
       ];
       return starshipImageUrl[rand];
     },
-    getPlanetImgUrl(){
+    getPlanetImgUrl() {
       let rand = Math.round(Math.random(2));
-      const planet1 = require("../assets/planet-1.jpg")
-      const planet2 = require("../assets/planet-2.jpg")
-      const planet3 = require("../assets/planet-3.jpg")
-      const planetImageUrl=[
-        planet1, planet2, planet3
-      ]
-      return planetImageUrl[rand]
+      const planet1 = require("../assets/planet-1.jpg");
+      const planet2 = require("../assets/planet-2.jpg");
+      const planet3 = require("../assets/planet-3.jpg");
+      const planetImageUrl = [planet1, planet2, planet3];
+      return planetImageUrl[rand];
     },
-    getCharacterImgUrl(){
+    getCharacterImgUrl() {
       let rand = Math.round(Math.random(2));
-      const character1 = require("../assets/character-1.jpg")
-      const character2 = require("../assets/character-2.jpg")
-      const character3 = require("../assets/character-3.jpg")
-      const character4 = require("../assets/character-4.jpg")
+      const character1 = require("../assets/character-1.jpg");
+      const character2 = require("../assets/character-2.jpg");
+      const character3 = require("../assets/character-3.jpg");
+      const character4 = require("../assets/character-4.jpg");
 
-      const characterImageUrl=[
-        character1, character2, character3, character4
-      ]
-      return characterImageUrl[rand]
+      const characterImageUrl = [
+        character1,
+        character2,
+        character3,
+        character4
+      ];
+      return characterImageUrl[rand];
+    },
+    displayResults(results){
+      console.log("this is the result" + results)
+      this.searchedResults = results
+    },
+    clearPage(isSearching){
+      if(isSearching){
+        this.starships=this.searchedResults.searchedStarships;
+        this.planets=this.searchedResults.searchedPlanets;
+        this.characters=this.searchedResults.searchedCharacters
+      }
     }
-  },
-  created(){
+},
+computed:{
+  displayStarships(){
+    
+  }
+},
+  created() {
     this.getStarships();
     this.getPlanets();
-    this.getCharacters()
+    this.getCharacters();
   }
- 
 };
 </script>
 

@@ -9,7 +9,7 @@
                 <span>Find your favorite Characters, Films, Species, Starships and Planets</span>
             </section>
             <section class="search">
-                <input type="text" placeholder="Enter a search item"/>
+                <input type="text" placeholder="Enter a search item" v-model="searchItem"/>
             </section>
         </div>
     </div>
@@ -18,7 +18,39 @@
 <script>
 export default {
   name: "Header",
-  components: {}
+  data(){
+    return{
+      searchItem:"",
+      results: [],
+      isSearching: false,
+      charactersResults:[],
+      planetsResults: [],
+      starshipsResults: []
+    }
+  },
+  watch: {
+    async searchItem(searched){
+      console.log(searched)
+      this.isSearching = true
+      const resCharacters = await fetch("https://swapi.co/api/people/?search=" +searched);
+      let charactersFromAPI = await resCharacters.json();
+      this.charactersResults = charactersFromAPI.results
+      const resPlanets = await fetch("https://swapi.co/api/planets/?search=" +searched);
+      let planetsFromAPI = await resPlanets.json();
+      this.planetsResults = planetsFromAPI.results
+      const resStarships = await fetch("https://swapi.co/api/starships/?search=" +searched);
+      let starshipsFromAPI = await resStarships.json();
+      this.starshipsResults = starshipsFromAPI.results
+      // console.log("checkout"+this.results)
+this.results= [{searchedCharacters: this.charactersResults}, {searchedPlanets: this.planetsResults}, {searchedStarships: this.starshipsResults}]
+      this.$emit('display:results', this.results);
+      this.$emit('clear:page', this.isSearching);
+      
+
+      
+
+    }
+  }
 };
 </script>
 <style scoped>
