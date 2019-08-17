@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <Header @display:results="displayResults" @clear:page ="clearPage"/>
+    <Header @display-results="displayResults"/>
+
+    <!-- <Header @display:results="displayResults" @clear:page ="clearPage"/> -->
     <div class="body">
     <Starships v-if="starships.length" :starships="starships"/>
     <Planets v-if="planets.length" :planets="planets"/>
@@ -14,6 +16,7 @@ import Header from "./Header.vue";
 import Starships from "./Starships/Starships.vue";
 import Planets from "./Planets/Planets.vue";
 import Characters from "./Characters/Characters.vue";
+import EventBus from "../eventBus.js"
 
 export default {
   name: "Home",
@@ -25,6 +28,9 @@ export default {
       characters: [],
       searchedResults: []
     };
+  },
+  created(){
+    EventBus.$on('display-results', (results)=>this.displayResults(results))
   },
   methods: {
     async getStarships() {
@@ -108,16 +114,21 @@ export default {
       return characterImageUrl[rand];
     },
     displayResults(results){
+      console.log("at least I can work")
       console.log("this is the result" + results)
       this.searchedResults = results
-    },
-    clearPage(isSearching){
-      if(isSearching){
-        this.starships=this.searchedResults.searchedStarships;
+      console.log(this.searchedResults)
+       this.starships=this.searchedResults.searchedStarships;
         this.planets=this.searchedResults.searchedPlanets;
         this.characters=this.searchedResults.searchedCharacters
-      }
-    }
+    },
+    // clearPage(isSearching){
+    //   if(isSearching){
+    //     this.starships=this.searchedResults.searchedStarships;
+    //     this.planets=this.searchedResults.searchedPlanets;
+    //     this.characters=this.searchedResults.searchedCharacters
+    //   }
+    // }
 },
 computed:{
   displayStarships(){

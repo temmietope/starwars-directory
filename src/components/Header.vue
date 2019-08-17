@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import EventBus from "../eventBus.js"
 export default {
   name: "Header",
   data(){
@@ -30,7 +31,7 @@ export default {
   },
   watch: {
     async searchItem(searched){
-      console.log(searched)
+console.log(searched)
       this.isSearching = true
       const resCharacters = await fetch("https://swapi.co/api/people/?search=" +searched);
       let charactersFromAPI = await resCharacters.json();
@@ -41,14 +42,26 @@ export default {
       const resStarships = await fetch("https://swapi.co/api/starships/?search=" +searched);
       let starshipsFromAPI = await resStarships.json();
       this.starshipsResults = starshipsFromAPI.results
-      // console.log("checkout"+this.results)
-this.results= [{searchedCharacters: this.charactersResults}, {searchedPlanets: this.planetsResults}, {searchedStarships: this.starshipsResults}]
-      this.$emit('display:results', this.results);
-      this.$emit('clear:page', this.isSearching);
-      
+      this.results= [{searchedCharacters: this.charactersResults}, {searchedPlanets: this.planetsResults}, {searchedStarships: this.starshipsResults}]
+      console.log(this.results)
+      EventBus.$emit('display-results', this.results);
+      // this.$emit('clear:page', this.isSearching);
 
-      
 
+//       console.log(searched)
+//       this.isSearching = true
+//       const resCharacters = await fetch("https://swapi.co/api/people/?search=" +searched);
+//       let charactersFromAPI = await resCharacters.json();
+//       this.charactersResults = charactersFromAPI.results
+//       const resPlanets = await fetch("https://swapi.co/api/planets/?search=" +searched);
+//       let planetsFromAPI = await resPlanets.json();
+//       this.planetsResults = planetsFromAPI.results
+//       const resStarships = await fetch("https://swapi.co/api/starships/?search=" +searched);
+//       let starshipsFromAPI = await resStarships.json();
+//       this.starshipsResults = starshipsFromAPI.results
+// this.results= [{searchedCharacters: this.charactersResults}, {searchedPlanets: this.planetsResults}, {searchedStarships: this.starshipsResults}]
+//       this.$emit('display:results', this.results);
+//       this.$emit('clear:page', this.isSearching);
     }
   }
 };
