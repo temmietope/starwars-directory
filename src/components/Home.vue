@@ -1,8 +1,7 @@
 <template>
   <div class="home">
-    <Header @display-results="displayResults"/>
+    <Header @searchItem= "results"/>
 
-    <!-- <Header @display:results="displayResults" @clear:page ="clearPage"/> -->
     <div class="body">
     <Starships v-if="starships.length" :starships="starships"/>
     <Planets v-if="planets.length" :planets="planets"/>
@@ -29,9 +28,7 @@ export default {
       searchedResults: []
     };
   },
-  created(){
-    EventBus.$on('display-results', (results)=>this.displayResults(results))
-  },
+  
   methods: {
     async getStarships() {
       const res = await fetch("https://swapi.co/api/starships/");
@@ -113,22 +110,31 @@ export default {
       ];
       return characterImageUrl[rand];
     },
-    displayResults(results){
-      console.log("at least I can work")
-      console.log("this is the result" + results)
-      this.searchedResults = results
-      console.log(this.searchedResults)
-       this.starships=this.searchedResults.searchedStarships;
-        this.planets=this.searchedResults.searchedPlanets;
-        this.characters=this.searchedResults.searchedCharacters
-    },
-    // clearPage(isSearching){
-    //   if(isSearching){
-    //     this.starships=this.searchedResults.searchedStarships;
-    //     this.planets=this.searchedResults.searchedPlanets;
-    //     this.characters=this.searchedResults.searchedCharacters
-    //   }
-    // }
+    async results(searched){
+      const resCharacters = await fetch("https://swapi.co/api/people/?search=" +searched);
+      let charactersFromAPI = await resCharacters.json();
+      let charactersB = charactersFromAPI.results
+      charactersB.forEach(a => {
+        a.imgUrl = this.getCharacterImgUrl();
+      });
+      this.characters = charactersB
+
+      const resPlanets = await fetch("https://swapi.co/api/planets/?search=" +searched);
+      let planetsFromAPI = await resPlanets.json();
+      let planetsB = planetsFromAPI.results
+      planetsB.forEach(a => {
+        a.imgUrl = this.getPlanetImgUrl();
+      });
+      this.planets = planetsB
+
+      const resStarships = await fetch("https://swapi.co/api/starships/?search=" +searched);
+      let starshipsFromAPI = await resStarships.json();
+      let starshipsB= starshipsFromAPI.results
+      starshipsB.forEach(a => {
+        a.imgUrl = this.getStarshipImgUrl();
+      });
+      this.starships = starshipsB
+    }
 },
 computed:{
   displayStarships(){
