@@ -4,10 +4,14 @@
         <hr/>
         <div class="flex-container">
         <div class="planets-intro-div">
-        <div class="planets-intro" v-for="(planet, index) in planets" v-if="index <= 2" :key="index" >
-           <img alt="planet-img" :src="planet.imgUrl"/>
-           <span>{{planet.name}}</span>
-        </div>
+          <div v-if="planets.length=== 0">No Starwars Planet matches your search</div>
+          <div v-else>
+            <div class="planets-intro" v-for="(planet, index) in planets" v-if="index <= 2" :key="index" >
+              <img alt="planet-img" :src="planet.imgUrl"/>
+              <span>{{planet.name}}</span>
+            </div>
+          </div>
+       
         </div>
         </div>
     </div>
@@ -17,14 +21,13 @@
 export default {
   name: "Planets",
   props: {
-    planets: Array,
+    planets: Array
   },
-  methods:{
+  methods: {
     getImgUrl(index) {
-    return require('../../assets/planet-'+(index)+'.jpg')
-}
+      return require("../../assets/planet-" + index + ".jpg");
+    }
   }
-
 };
 </script>
 <style scoped>
@@ -49,13 +52,11 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 .planets-intro-div {
   display: grid;
   grid-template-columns: 33.3% 33.3% 33.3%;
   max-width: 1200px;
-
 }
 .planets-intro {
   display: flex;
@@ -66,14 +67,14 @@ hr {
   height: 430px;
   border: 1px solid black;
   margin: 20px 40px;
-  position:relative;
+  position: relative;
 }
 img {
   height: 380px;
   width: 350px;
-  position:relative
+  position: relative;
 }
-span{
+span {
   position: absolute;
   color: white;
 }

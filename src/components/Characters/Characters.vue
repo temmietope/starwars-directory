@@ -6,13 +6,17 @@
         <hr/>
         <div class="flex-container">
         <div class="characters-intro-div">
-       <div class="characters-intro" v-for="(character, index) in characters" v-if="index <= 3" :key="index" >
-           <div><img alt="character-img" :src="character.imgUrl"/></div>
-           <div>
-             <h5>{{character.name}}</h5>
-             <span>{{character.name}} has featured in {{character.films.length}} films.</span>
-            </div>
-        </div>
+          <div v-if="characters.length=== 0">No Starwars Character matches your search</div>
+          <div v-else>
+             <div class="characters-intro" v-for="(character, index) in characters" v-if="index <= 3" :key="index" >
+              <div><img alt="character-img" :src="character.imgUrl"/></div>
+              <div>
+                <h5>{{character.name}}</h5>
+                <span>{{character.name}} has featured in {{character.films.length}} films.</span>
+              </div>
+              </div>
+          </div>
+      
         </div>
         </div>
         <router-link to="/characters"><button>VIEW MORE</button></router-link>
@@ -23,14 +27,13 @@
 export default {
   name: "Characters",
   props: {
-    characters: Array,
+    characters: Array
   },
-  methods:{
+  methods: {
     getImgUrl(index) {
-    return require('../../assets/character-'+(index)+'.jpg')
-}
+      return require("../../assets/character-" + index + ".jpg");
+    }
   }
-
 };
 </script>
 <style scoped>
@@ -55,12 +58,10 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 .characters-intro-div {
   display: grid;
   grid-template-columns: 50% 50%;
-
 }
 .characters-intro {
   display: flex;
