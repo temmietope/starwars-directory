@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <Header @searchItem= "results"/>
-
     <div class="body">
       <Starships :starships="starships"/>
     <Planets :planets="planets"/>
@@ -113,35 +112,52 @@ export default {
       ];
       return characterImageUrl[rand];
     },
-    async results(searched) {
-      const resCharacters = await fetch(
+   
+    async charactersSearch(searched){
+   const resCharacters = await fetch(
         "https://swapi.co/api/people/?search=" + searched
       );
       let charactersFromAPI = await resCharacters.json();
       let charactersB = charactersFromAPI.results;
+      console.log(charactersB)
       charactersB.forEach(a => {
         a.imgUrl = this.getCharacterImgUrl();
       });
       this.characters = charactersB;
-      const resPlanets = await fetch(
+    },
+
+    async planetsSearch(searched){
+    const resPlanets = await fetch(
         "https://swapi.co/api/planets/?search=" + searched
       );
       let planetsFromAPI = await resPlanets.json();
       let planetsB = planetsFromAPI.results;
+      console.log(planetsB)
       planetsB.forEach(a => {
         a.imgUrl = this.getPlanetImgUrl();
       });
       this.planets = planetsB;
-      const resStarships = await fetch(
+    },
+
+    async starshipsSearch(searched){
+     const resStarships = await fetch(
         "https://swapi.co/api/starships/?search=" + searched
       );
       let starshipsFromAPI = await resStarships.json();
       let starshipsB = starshipsFromAPI.results;
+      console.log(starshipsB)
       starshipsB.forEach(a => {
         a.imgUrl = this.getStarshipImgUrl();
       });
       this.starships = starshipsB;
+    },
+    results(searched){
+      console.log(searched)
+      this.starshipsSearch(searched);
+      this.planetsSearch(searched);
+      this.charactersSearch(searched)
     }
+
   },
 
   created() {
