@@ -1,29 +1,24 @@
 <template>
 <div>
     <Header/>
-    <div class="all-starships">
-        <h1>Popular Starships</h1>
-        <div class="all-starships" v-for="(starship, index) in starships" :key="index">
-            <div>
-                <b-card
-                    :title= "starship.name"
-                    :img-src= "starship.imgUrl"
-                    img-alt="Image"
-                    img-top
-                    tag="article"
-                    style="max-width: 20rem;"
-                    class="mb-2"
-                >
-                    <b-card-text>
-                    The {{starship.name}} is of the model {{starship.model}} and was manufactured by {{starship.manufacturer}}.
-                    </b-card-text>
-
-                    <router-link :to="{ name: 'Details', params: {moreDetails: starship ,arrayList:starships, index: index}}"><b-button variant="primary">Read More</b-button></router-link>
-                </b-card>
-            </div>
+        <h1>StarWars Starships</h1>
+        <hr/>
+     <div class="navigation">
+        <button @click="loadPreviousPage" :disabled="allStarshipsFromAPI['previous']===null"><i class="fas fa-arrow-left"></i></button> 
+        <button @click="loadNextPage" :disabled="allStarshipsFromAPI['next']===null" ><i class="fas fa-arrow-right"></i></button> 
+      </div>
+    <div class="starships">
+        <div class="flex-container">
+          <div class="starship" v-for="(starship, index) in starships" :key="index">
+              <img alt="starship-img" :src="starship.imgUrl"/>
+              <h5>{{starship.name}}</h5>
+              <p>Model: {{starship.model}}</p>
+              <p>Cargo Capacity: {{starship.cargo_capacity}}</p>
+              <div class="btn"><router-link :to="{ name: 'Details', params: {moreDetails: starship, arrayList:starships, index: index }  }"><button>Read More</button></router-link></div>
+          </div>
         </div>
-        <button @click="loadPreviousPage" :disabled="allStarshipsFromAPI['previous']===null">prev</button> 
-        <button @click="loadNextPage" :disabled="allStarshipsFromAPI['next']===null" >next</button> 
+        
+        
     </div>
 </div>
 </template>
@@ -100,22 +95,75 @@ export default {
 </script>
 
 <style scoped>
-.all-starships {
+.navigation{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15px 100px 0 100px;
+}
+.navigation button{
+  border: none;
+  color: rgb(203, 221, 221);
+  background-color: rgb(60, 60, 146);
+  padding: 5px
+}
+.starships {
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  margin-top: 50px;
   padding-top: 50px;
 }
 h1 {
   color: rgb(34, 33, 33);
-  margin-bottom: none;
+  margin-top: 30px
+}
+h5 {
+  padding: 10px;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: bolder;
+}
+p {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 hr {
   width: 100px;
   height: 6px;
   background-color: rgb(34, 33, 33);
   padding-top: none;
+}
+img {
+  height: 300px;
+  width: 350px;
+}
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.starship {
+  flex: 0 0 350px;
+  height: 480px;
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid rgba(53, 51, 51, 0.788);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.starship .btn {
+  display: flex;
+  justify-content: flex-end;
+}
+.btn button {
+  padding: 13px 17px;
+  font-size: 16px;
+  background-color: rgba(29, 29, 151, 0.863);
+  color: rgb(215, 226, 226);
+  border: none;
 }
 </style>
 
