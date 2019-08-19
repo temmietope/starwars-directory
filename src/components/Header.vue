@@ -26,8 +26,11 @@ export default {
   },
   watch: {
     searchItem(searched){
+      this.$router.push("/")
       console.log(searched)
+      setTimeout(()=>{
       this.$emit("searchItem" , searched)
+      }, 2000)
     }
   }
 };
