@@ -6,7 +6,10 @@
         <div class="all-planets" v-for="(planet, index) in planets" :key="index">
             <div>
                 <img alt="planet-img" :src="planet.imgUrl"/>
-           <router-link :to="{ name: 'Details', params: {moreDetails: plaanet, arrayList:planets, index: index }  }"><span>{{planet.name}}</span></router-link>
+                <p>Name: {{planet.name}}</p>
+                <p>Temperature: {{planet.climate}}</p>
+                <p>Population: {{planet.population}}</p>
+           <router-link :to="{ name: 'Details', params: {moreDetails: planet, arrayList:planets, index: index }  }"><span>{{planet.name}}</span></router-link>
             </div>
         </div>
         <button @click="loadPreviousPage" :disabled="allPlanetsFromAPI['previous']===null">prev</button> 

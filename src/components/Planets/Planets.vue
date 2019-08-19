@@ -2,15 +2,16 @@
     <div class="planets">
         <h1>Popular Planets</h1>
         <hr/>
-        <div class="flex-container">
-        <div class="planets-intro-div">
           <div v-if="planets.length=== 0">No Starwars Planet matches your search</div>
-          <div v-else>
+
+        <div v-else class="flex-container">
+        <div class="planets-intro-div">
+          <!-- <div v-else> -->
             <div class="planets-intro" v-for="(planet, index) in planets" v-if="index <= 2" :key="index" >
               <img alt="planet-img" :src="planet.imgUrl"/>
               <span>{{planet.name}}</span>
             </div>
-          </div>
+          <!-- </div> -->
        
         </div>
         </div>
