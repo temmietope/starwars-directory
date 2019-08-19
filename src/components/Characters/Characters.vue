@@ -4,18 +4,23 @@
 
         <h1>PopularCharacters</h1>
         <hr/>
-        <div class="flex-container">
-        <div class="characters-intro-div">
           <div v-if="characters.length=== 0">No Starwars Character matches your search</div>
-          <div v-else>
+
+        <div v-else class="flex-container">
+        <div class="characters-intro-div">
+          <!-- <div v-else> -->
              <div class="characters-intro" v-for="(character, index) in characters" v-if="index <= 3" :key="index" >
               <div><img alt="character-img" :src="character.imgUrl"/></div>
               <div>
-                <h5>{{character.name}}</h5>
-                <span>{{character.name}} has featured in {{character.films.length}} films.</span>
+                <p>Name: {{character.name}}</p>
+                <p>Birth-year: {{character.birth_year}}</p>
+                <p v-if="character.gender ==='n/a'">Robot</p>
+                <p v-else>Gender: {{character.gender}}</p>
+                    <router-link :to="{ name: 'Details', params: {moreDetails: character ,arrayList:characters, index: index}}"><b-button variant="primary">Read More</b-button></router-link>
+
               </div>
+
               </div>
-          </div>
       
         </div>
         </div>

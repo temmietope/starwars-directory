@@ -15,7 +15,10 @@
                     class="mb-2"
                 >
                     <b-card-text>
-                    {{character.name}} has featured in {{character.films.length}} films.
+                      <p>Name: {{character.name}}</p>
+                      <p>Birth-year: {{character.birth_year}}</p>
+                      <p v-if="character.gender ==='n/a'">Robot</p>
+                      <p v-else>Gender: {{character.gender}}</p>
                     </b-card-text>
 
                     <router-link :to="{ name: 'Details', params: {moreDetails: character ,arrayList:characters, index: index}}"><b-button variant="primary">Read More</b-button></router-link>
