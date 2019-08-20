@@ -1,19 +1,22 @@
 <template>
     <div>
     <Header/>
-    <div class="all-planets">
+    <div class="planets">
         <h1>Popular Planets</h1>
-        <div class="all-planets" v-for="(planet, index) in planets" :key="index">
-            <div>
-                <img alt="planet-img" :src="planet.imgUrl"/>
-                <p>Name: {{planet.name}}</p>
-                <p>Temperature: {{planet.climate}}</p>
-                <p>Population: {{planet.population}}</p>
-           <router-link :to="{ name: 'Details', params: {moreDetails: planet, arrayList:planets, index: index }  }"><span>{{planet.name}}</span></router-link>
-            </div>
+        <div class="flex-container">
+            <div class="planet" v-for="(planet, index) in planets" v-if="index <= 2" :key="index" >
+              <div class="space">
+              <div class="image"><img alt="planet-img" :src="planet.imgUrl"/>
+                <div class="name"><span>{{planet.name}}</span></div>
+              </div>
+              </div>
+            </div>       
         </div>
-        <button @click="loadPreviousPage" :disabled="allPlanetsFromAPI['previous']===null">prev</button> 
-        <button @click="loadNextPage" :disabled="allPlanetsFromAPI['next']===null" >next</button> 
+        <div class="navigation">
+          <button @click="loadPreviousPage" :disabled="allPlanetsFromAPI['previous']===null">prev</button> 
+          <button @click="loadNextPage" :disabled="allPlanetsFromAPI['next']===null" >next</button>
+        </div>
+         
     </div>
 </div>
 </template>
@@ -77,3 +80,65 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.planets {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+}
+h1 {
+  color: rgb(34, 33, 33);
+  margin-bottom: none;
+}
+hr {
+  width: 100px;
+  height: 6px;
+  background-color: rgb(34, 33, 33);
+  padding-top: none;
+}
+.flex-container {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.planet{
+  flex: 0 0 300px;
+  height: 300px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+img{
+  height: 300px;
+  width: 300px;
+}
+space{
+  height: 350px;
+}
+.image{
+  height: 350px;
+  width: 350px;
+}
+.name{
+  height: 350px;
+  width: 350px;
+  background-color: white;
+}
+.navigation{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+.navigation button{
+  border: none;
+  color: rgb(203, 221, 221);
+  background-color: rgb(93, 93, 148);
+  padding: 10px 15px;
+  margin: 10px;
+  border-radius: 5px;
+}
+</style>

@@ -11,8 +11,9 @@
               <p>Cargo Capacity: {{starship.cargo_capacity}}</p>
               <div class="btn"><router-link :to="{ name: 'Details', params: {moreDetails: starship, arrayList:starships, index: index }  }"><button>Read More</button></router-link></div>
             </div>
+        <div class="router-link"><router-link to="/starships"><button>VIEW MORE</button></router-link></div>
+
           </div>
-        <router-link to="/starships"><button>VIEW MORE</button></router-link>
 
     </div>
 </template>
@@ -62,7 +63,7 @@ hr {
 }
 img {
   height: 300px;
-  width: 350px;
+  width: 300px;
 }
 .flex-container {
   display: flex;
@@ -71,12 +72,12 @@ img {
   align-items: center;
 }
 .starship {
-  flex: 0 0 350px;
+  flex: 0 0 300px;
   height: 480px;
   margin: 20px;
   padding: 10px;
   border: 1px solid rgba(53, 51, 51, 0.788);
-  border-radius: 4px;
+  border-radius: 7px;
   box-sizing: border-box;
 }
 .starship .btn {
@@ -89,6 +90,11 @@ img {
   background-color: rgba(29, 29, 151, 0.863);
   color: rgb(215, 226, 226);
   border: none;
+}
+.router-link button{
+  padding: 7px 150px;
+  border: 1.5px solid rgba(29, 29, 151, 0.863);
+  background-color: azure;
 }
 </style>
 

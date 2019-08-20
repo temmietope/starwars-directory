@@ -9,8 +9,8 @@
         </div>
         <div class="body">
           <h3>About</h3>
-          <p>Name: {{newObject.name}}</p>
-
+        
+        <div class="intro">
           <p v-if="newObject.birth_year">Birth-year: {{newObject.birth_year}}</p>
           <p v-if="newObject.gender==='n/a'">Robot</p>
           <p v-if="newObject.gender">Gender: {{newObject.gender}}</p>
@@ -33,8 +33,12 @@
           <p v-if="newObject.orbital_period">Rotation-period: {{newObject.orbital_period}}</p>
           <p v-if="newObject.terrain">Terrain: {{newObject.terrain}}</p>
 
+        </div>
+        <div class="article">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit cumque aperiam quia! At molestiae adipisci ducimus suscipit, nam minus ipsa a officia sunt quaerat id veritatis itaque amet quasi. Numquam cumque deserunt dignissimos soluta ad neque eaque maxime earum quasi. Aliquid at dolorum tenetur! Similique magni quasi enim hic ex voluptatibus quod cumque laborum illo repudiandae deserunt corporis, fugiat provident modi doloribus optio delectus reprehenderit blanditiis cum, temporibus voluptas est! Qui consequuntur, tenetur laboriosam quo temporibus voluptates aperiam et explicabo.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit cumque aperiam quia! At molestiae adipisci ducimus suscipit, nam minus ipsa a officia sunt quaerat id veritatis itaque amet quasi. Numquam cumque deserunt dignissimos soluta ad neque eaque maxime earum quasi. Aliquid at dolorum tenetur! Similique magni quasi enim hic ex voluptatibus quod cumque laborum illo repudiandae deserunt corporis, fugiat provident modi doloribus optio delectus reprehenderit blanditiis cum, temporibus voluptas est! Qui consequuntur, tenetur laboriosam quo temporibus voluptates aperiam et explicabo.</p></div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit cumque aperiam quia! At molestiae adipisci ducimus suscipit, nam minus ipsa a officia sunt quaerat id veritatis itaque amet quasi. Numquam cumque deserunt dignissimos soluta ad neque eaque maxime earum quasi. Aliquid at dolorum tenetur! Similique magni quasi enim hic ex voluptatibus quod cumque laborum illo repudiandae deserunt corporis, fugiat provident modi doloribus optio delectus reprehenderit blanditiis cum, temporibus voluptas est! Qui consequuntur, tenetur laboriosam quo temporibus voluptates aperiam et explicabo.</p>
+        </div>
+        </div>
     </div>
 </template>
 
@@ -78,11 +82,17 @@ export default {
   align-items: center;
 }
 
-img {
-  height: 500px;
+.header img {
+  height: 400px;
   width: 100%;
 }
-span {
+.header span{
+  color: red;
+  font-weight: bolder;
+  font-size: 2.7em;
+  text-transform: uppercase;
+}
+/* span {
   color: red;
   font-size: 30px;
   text-align: left;
@@ -90,4 +100,12 @@ span {
 .body {
   width: 50%;
 }
+.intro p{
+  padding: none;
+  margin: none;
+}
+.article{
+  box-sizing: border-box;
+  padding: 10px;
+} */
 </style>

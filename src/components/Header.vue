@@ -9,28 +9,34 @@
                 <span>Find your favorite Characters, Films, Species, Starships and Planets</span>
             </section>
             <section class="search">
-                <input type="text" placeholder="Enter a search item" v-model="searchItem"/>
+                <input type="text" placeholder="Enter a search item" v-model="searchItem" @focus="returnToHome()"/>
             </section>
         </div>
     </div>
 </template>
 
 <script>
-import EventBus from "../eventBus.js"
+import EventBus from "../eventBus.js";
 export default {
   name: "Header",
-  data(){
-    return{
-      searchItem:"",
-    }
+  data() {
+    return {
+      searchItem: ""
+    };
   },
   watch: {
-    searchItem(searched){
-      this.$router.push("/")
-      console.log(searched)
-      setTimeout(()=>{
-      this.$emit("searchItem" , searched)
-      }, 2000)
+    searchItem(searched) {
+      console.log(searched);
+      setTimeout(() => {
+        this.$emit("searchItem", searched);
+      }, 2000);
+    }
+  },
+  methods: {
+    returnToHome() {
+      setTimeout(() => {
+        this.$router.push("/");
+      }, 1000);
     }
   }
 };

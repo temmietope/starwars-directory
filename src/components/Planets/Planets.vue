@@ -3,17 +3,14 @@
         <h1>Popular Planets</h1>
         <hr/>
           <div v-if="planets.length=== 0">No Starwars Planet matches your search</div>
-
         <div v-else class="flex-container">
-        <div class="planets-intro-div">
-          <!-- <div v-else> -->
-            <div class="planets-intro" v-for="(planet, index) in planets" v-if="index <= 2" :key="index" >
-              <img alt="planet-img" :src="planet.imgUrl"/>
-              <span>{{planet.name}}</span>
-            </div>
-          <!-- </div> -->
-       
-        </div>
+            <div class="planet" v-for="(planet, index) in planets" v-if="index <= 2" :key="index" >
+              <div class="space">
+              <div class="image"><img alt="planet-img" :src="planet.imgUrl"/>
+                <div class="name"><span>{{planet.name}}</span></div>
+              </div>
+              </div>
+            </div>       
         </div>
     </div>
 </template>
@@ -51,33 +48,31 @@ hr {
 }
 .flex-container {
   display: flex;
+  flex-flow: wrap;
   justify-content: center;
   align-items: center;
 }
-.planets-intro-div {
-  display: grid;
-  grid-template-columns: 33.3% 33.3% 33.3%;
-  max-width: 1200px;
+.planet{
+  flex: 0 0 300px;
+  height: 300px;
+  padding: 10px;
+  box-sizing: border-box;
 }
-.planets-intro {
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  align-items: center;
-  width: 380px;
-  height: 430px;
-  border: 1px solid black;
-  margin: 20px 40px;
-  position: relative;
+img{
+  height: 300px;
+  width: 300px;
 }
-img {
-  height: 380px;
+space{
+  height: 350px;
+}
+.image{
+  height: 350px;
   width: 350px;
-  position: relative;
 }
-span {
-  position: absolute;
-  color: white;
+.name{
+  height: 350px;
+  width: 350px;
+  background-color: white;
 }
 </style>
 

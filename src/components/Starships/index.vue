@@ -3,11 +3,7 @@
     <Header/>
         <h1>StarWars Starships</h1>
         <hr/>
-     <div class="navigation">
-        <button @click="loadPreviousPage" :disabled="allStarshipsFromAPI['previous']===null"><i class="fas fa-arrow-left"></i></button> 
-        <button @click="loadNextPage" :disabled="allStarshipsFromAPI['next']===null" ><i class="fas fa-arrow-right"></i></button> 
-      </div>
-    <div class="starships">
+      <div class="starships">
         <div class="flex-container">
           <div class="starship" v-for="(starship, index) in starships" :key="index">
               <img alt="starship-img" :src="starship.imgUrl"/>
@@ -16,10 +12,12 @@
               <p>Cargo Capacity: {{starship.cargo_capacity}}</p>
               <div class="btn"><router-link :to="{ name: 'Details', params: {moreDetails: starship, arrayList:starships, index: index }  }"><button>Read More</button></router-link></div>
           </div>
-        </div>
-        
-        
-    </div>
+        </div>        
+      </div>
+      <div class="navigation">
+        <button @click="loadPreviousPage" :disabled="allStarshipsFromAPI['previous']===null"><i class="fas fa-arrow-left"></i></button> 
+        <button @click="loadNextPage" :disabled="allStarshipsFromAPI['next']===null" ><i class="fas fa-arrow-right"></i></button> 
+      </div>
 </div>
 </template>
 
@@ -86,7 +84,6 @@ export default {
       return starshipImageUrl[rand];
     }
   },
-  created() {},
   mounted() {
     this.allStarships();
     this.getImageUrl();
@@ -98,14 +95,16 @@ export default {
 .navigation{
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin: 15px 100px 0 100px;
+  justify-content: center;
+  margin: 20px;
 }
 .navigation button{
   border: none;
   color: rgb(203, 221, 221);
-  background-color: rgb(60, 60, 146);
-  padding: 5px
+  background-color: rgb(93, 93, 148);
+  padding: 10px 15px;
+  margin: 10px;
+  border-radius: 5px;
 }
 .starships {
   display: flex;
@@ -137,7 +136,7 @@ hr {
 }
 img {
   height: 300px;
-  width: 350px;
+  width: 300px;
 }
 .flex-container {
   display: flex;
@@ -146,12 +145,12 @@ img {
   align-items: center;
 }
 .starship {
-  flex: 0 0 350px;
+  flex: 0 0 300px;
   height: 480px;
   margin: 20px;
   padding: 10px;
   border: 1px solid rgba(53, 51, 51, 0.788);
-  border-radius: 4px;
+  border-radius: 7px;
   box-sizing: border-box;
 }
 .starship .btn {
@@ -164,6 +163,7 @@ img {
   background-color: rgba(29, 29, 151, 0.863);
   color: rgb(215, 226, 226);
   border: none;
+  border-radius: 5px;
 }
 </style>
 
