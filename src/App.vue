@@ -22,6 +22,8 @@ export default {
 
 <style>
 #app {
+    /* font-family: "Berkshire Swash"; */
+
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
