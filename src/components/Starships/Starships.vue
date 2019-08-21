@@ -3,15 +3,18 @@
         <h1>Popular Starships</h1>
         <hr/>
           <div v-if="starships.length=== 0">No Starwars Starship matches your search</div>
-          <div v-else class="flex-container">
-            <div class="starship" v-for="(starship, index) in starships" v-if="index <= 5" :key="index" >
+          <div v-else>
+            <div class="flex-container">
+              <div class="starship" v-for="(starship, index) in starships" v-if="index <= 5" :key="index" >
               <img alt="starship-img" :src="starship.imgUrl"/>
               <h5>{{starship.name}}</h5>
               <p>Model: {{starship.model}}</p>
               <p>Cargo Capacity: {{starship.cargo_capacity}}</p>
               <div class="btn"><router-link :to="{ name: 'Details', params: {moreDetails: starship, arrayList:starships, index: index }  }"><button>Read More</button></router-link></div>
             </div>
-        <div class="router-link"><router-link to="/starships"><button>VIEW MORE</button></router-link></div>
+            </div>
+            
+        <div class="router-link"><router-link to="/starships"><button>VIEW ALL</button></router-link></div>
 
           </div>
 
@@ -40,6 +43,7 @@ export default {
   justify-content: center;
   align-items: center;
   padding-top: 50px;
+  margin-top: 30px;
 }
 h1 {
   color: rgb(34, 33, 33);
@@ -54,6 +58,7 @@ h5 {
 p {
   margin-bottom: 0;
   padding-bottom: 0;
+  font-size: 13px
 }
 hr {
   width: 100px;
@@ -77,6 +82,7 @@ img {
   margin: 20px;
   padding: 10px;
   border: 1px solid rgba(53, 51, 51, 0.788);
+  background-color: rgba(221, 220, 220, 0.521);  
   border-radius: 7px;
   box-sizing: border-box;
 }

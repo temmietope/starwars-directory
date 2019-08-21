@@ -127,6 +127,7 @@ h5 {
 p {
   margin-bottom: 0;
   padding-bottom: 0;
+  font-size: 13px
 }
 hr {
   width: 100px;
@@ -150,6 +151,7 @@ img {
   margin: 20px;
   padding: 10px;
   border: 1px solid rgba(53, 51, 51, 0.788);
+  background-color: rgba(221, 220, 220, 0.521);
   border-radius: 7px;
   box-sizing: border-box;
 }
