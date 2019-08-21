@@ -38,6 +38,55 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit cumque aperiam quia! At molestiae adipisci ducimus suscipit, nam minus ipsa a officia sunt quaerat id veritatis itaque amet quasi. Numquam cumque deserunt dignissimos soluta ad neque eaque maxime earum quasi. Aliquid at dolorum tenetur! Similique magni quasi enim hic ex voluptatibus quod cumque laborum illo repudiandae deserunt corporis, fugiat provident modi doloribus optio delectus reprehenderit blanditiis cum, temporibus voluptas est! Qui consequuntur, tenetur laboriosam quo temporibus voluptates aperiam et explicabo.</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit cumque aperiam quia! At molestiae adipisci ducimus suscipit, nam minus ipsa a officia sunt quaerat id veritatis itaque amet quasi. Numquam cumque deserunt dignissimos soluta ad neque eaque maxime earum quasi. Aliquid at dolorum tenetur! Similique magni quasi enim hic ex voluptatibus quod cumque laborum illo repudiandae deserunt corporis, fugiat provident modi doloribus optio delectus reprehenderit blanditiis cum, temporibus voluptas est! Qui consequuntur, tenetur laboriosam quo temporibus voluptates aperiam et explicabo.</p>
         </div>
+        <div class="recentlySearched" v-if="newObject.gender">
+          <h3>Recently Searched Characters</h3>
+          <div v-if="!recentCharacters">
+            No recently searched StarWars Character
+          </div>
+          <div v-else>
+            <div v-for="(character, index) in characters" class="character-flex-container" :key="index">
+              <div><img alt="character-img" :src="character.imgUrl"/></div>
+                <div class="character-details">
+                  <p>Name: {{character.name}}</p>
+                  <p>Birth-year: {{character.birth_year}}</p>
+                  <p v-if="character.gender ==='n/a'">Robot</p>
+                  <p v-else>Gender: {{character.gender}}</p>
+                      <router-link :to="{ name: 'Details', params: {moreDetails: character ,arrayList:characters, index: index}}"><span>Read More...</span></router-link>
+                </div>
+          </div>
+          </div>
+          
+        </div>
+        <div class="recentlySearched" v-if="newObject.model">
+          <h3>Recently Searched Starships</h3>
+          <div v-if="!recentStarships">
+            No recently searched StarWars Starship
+          </div>
+          <div v-else>
+              <div v-for="(starship, index) in starships" class="starship-flex-container" :key="index">
+              <img alt="starship-img" :src="starship.imgUrl"/>
+              <h5>{{starship.name}}</h5>
+              <p>Model: {{starship.model}}</p>
+              <p>Cargo Capacity: {{starship.cargo_capacity}}</p>
+              <div class="btn"><router-link :to="{ name: 'Details', params: {moreDetails: starship, arrayList:recentStarships, index: index }  }"><button>Read More</button></router-link></div>
+          </div>
+          </div>
+          
+        </div>
+        <div class="recentlySearched" v-if="newObject.gravity">
+          <h3>Recently Searched Planets</h3>
+          <div v-if="!recentPlanets">
+            No recently searched StarWars Planet
+          </div>
+          <div v-else>
+            <div v-for="(planet, index) in planets" class="planet-flex-container" :key="index">
+              <img alt="planet-img" :src="planet.imgUrl"/>
+              <router-link :to="{ name: 'Details', params: {moreDetails: planet ,arrayList:recentPlanets, index: index}}"><span>{{planet.name}}</span></router-link>
+            </div>
+          </div>
+          
+
+        </div>
         </div>
     </div>
 </template>
@@ -48,7 +97,10 @@ export default {
   data() {
     return {
       newObject: {},
-      newIndex: this.index
+      newIndex: this.index,
+      recentStarships: [],
+      recentCharacters: [],
+      recentPlanets: []
     };
   },
   props: {
@@ -67,9 +119,25 @@ export default {
       this.newObject = this.arrayList[this.newIndex];
     }
   },
+  computed:{
+    starships(){
+      return this.recentStarships.split(0,3)
+    },
+    characters(){
+      return this.recentCharacters.split(0.2)
+    },
+    planets(){
+      return this.recentPlanets.split(0,3)
+    }
+  },
   mounted() {
     console.log(this.arrayList);
     this.newObject = this.moreDetails;
+    this.recentStarships =JSON.parse(localStorage.getItem('searchedStarships'))
+    this.recentCharacters =JSON.parse(localStorage.getItem('searchedCharacters'))
+    this.recentPlanets =JSON.parse(localStorage.getItem('searchedPlanets'))
+
+
   }
 };
 </script>
@@ -92,20 +160,5 @@ export default {
   font-size: 2.7em;
   text-transform: uppercase;
 }
-/* span {
-  color: red;
-  font-size: 30px;
-  text-align: left;
-}
-.body {
-  width: 50%;
-}
-.intro p{
-  padding: none;
-  margin: none;
-}
-.article{
-  box-sizing: border-box;
-  padding: 10px;
-} */
+
 </style>
