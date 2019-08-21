@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import EventBus from "../eventBus.js";
 export default {
   name: "Header",
   data() {
@@ -29,13 +28,14 @@ export default {
       console.log(searched);
       setTimeout(() => {
         this.$emit("searchItem", searched);
-      }, 2000);
+      }, 3000);
     }
   },
   methods: {
     returnToHome() {
       setTimeout(() => {
         this.$router.push("/");
+        // localStorage.getItem('starshipA')
       }, 1000);
     }
   }
