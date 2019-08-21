@@ -5,9 +5,6 @@
       <Starships :starships="starships"/>
     <Planets :planets="planets"/>
     <Characters :characters="characters"/>
-    <!-- <Starships v-if="starships.length" :starships="starships"/>
-    <Planets v-if="planets.length" :planets="planets"/>
-    <Characters v-if="characters.length" :characters="characters"/> -->
   </div>
   </div>
 </template>
@@ -17,7 +14,6 @@ import Header from "./Header.vue";
 import Starships from "./Starships/Starships.vue";
 import Planets from "./Planets/Planets.vue";
 import Characters from "./Characters/Characters.vue";
-import * as Utils from "../eventBus.js";
 
 export default {
   name: "Home",
@@ -112,52 +108,72 @@ export default {
       ];
       return characterImageUrl[rand];
     },
-   
-    async charactersSearch(searched){
-   const resCharacters = await fetch(
+
+    async charactersSearch(searched) {
+      const resCharacters = await fetch(
         "https://swapi.co/api/people/?search=" + searched
       );
       let charactersFromAPI = await resCharacters.json();
       let charactersB = charactersFromAPI.results;
-      console.log(charactersB)
+      console.log(charactersB);
       charactersB.forEach(a => {
         a.imgUrl = this.getCharacterImgUrl();
       });
       this.characters = charactersB;
+      // if(!localStorage.getItem('searchedCharacter').length){
+      //   localStorage.setItem('searchedCharacters', JSON.stringify(charactersB))
+      // }
+      // else{
+      //   const prev = localStorage.getItem('searchedCharacters')
+      //   localStorage.setItem("searchedCharacters", JSON.stringify([...prev, charactersB]));
+      // }
     },
 
-    async planetsSearch(searched){
-    const resPlanets = await fetch(
+    async planetsSearch(searched) {
+      const resPlanets = await fetch(
         "https://swapi.co/api/planets/?search=" + searched
       );
       let planetsFromAPI = await resPlanets.json();
       let planetsB = planetsFromAPI.results;
-      console.log(planetsB)
+      console.log(planetsB);
       planetsB.forEach(a => {
         a.imgUrl = this.getPlanetImgUrl();
       });
       this.planets = planetsB;
+      // if(!localStorage.getItem('searchedPlanets').length){
+      //   localStorage.setItem('searchedPlanets', JSON.stringify(planetsB))
+      // }
+      // else{
+      //   const prev = localStorage.getItem('searchedPlanets')
+      //   localStorage.setItem("searchedPlanets", JSON.stringify([...prev, planetsB]));
+      // }
     },
 
-    async starshipsSearch(searched){
-     const resStarships = await fetch(
+    async starshipsSearch(searched) {
+      const resStarships = await fetch(
         "https://swapi.co/api/starships/?search=" + searched
       );
       let starshipsFromAPI = await resStarships.json();
       let starshipsB = starshipsFromAPI.results;
-      console.log(starshipsB)
+      console.log(starshipsB);
       starshipsB.forEach(a => {
         a.imgUrl = this.getStarshipImgUrl();
       });
       this.starships = starshipsB;
+      // if(!localStorage.getItem('searchedStarships').length){
+      //   localStorage.setItem('searchedStarships', JSON.stringify(starshipsB))
+      // }
+      // else{
+      //   const prev = localStorage.getItem('searchedStarships')
+      //   localStorage.setItem("searchedStarships", JSON.stringify([...prev, starshipsB]));
+      // }
     },
-    results(searched){
-      console.log(searched)
+    results(searched) {
+      console.log(searched);
       this.starshipsSearch(searched);
       this.planetsSearch(searched);
-      this.charactersSearch(searched)
+      this.charactersSearch(searched);
     }
-
   },
 
   created() {
