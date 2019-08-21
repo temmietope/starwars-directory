@@ -120,6 +120,7 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 20px;
+  font-size: 13px
 }
 img {
   width: 300px;

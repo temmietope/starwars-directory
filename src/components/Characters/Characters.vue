@@ -5,18 +5,20 @@
         <h1>Popular Characters</h1>
         <hr/>
           <div v-if="characters.length=== 0">No Starwars Character matches your search</div>
-          <div v-else class="flex-container">
-            <div class="character" v-for="(character, index) in characters" v-if="index <= 3" :key="index" >
-              <div><img alt="character-img" :src="character.imgUrl"/></div>
-              <div class="character-details">
-                <p>Name: {{character.name}}</p>
-                <p>Birth-year: {{character.birth_year}}</p>
-                <p v-if="character.gender ==='n/a'">Robot</p>
-                <p v-else>Gender: {{character.gender}}</p>
-                    <router-link :to="{ name: 'Details', params: {moreDetails: character ,arrayList:characters, index: index}}"><span>Read More...</span></router-link>
-              </div>
+          <div v-else>
+            <div class="flex-container">
+              <div class="character" v-for="(character, index) in characters" v-if="index <= 3" :key="index" >
+                <div><img alt="character-img" :src="character.imgUrl"/></div>
+                <div class="character-details">
+                  <p>Name: {{character.name}}</p>
+                  <p>Birth-year: {{character.birth_year}}</p>
+                  <p v-if="character.gender ==='n/a'">Robot</p>
+                  <p v-else>Gender: {{character.gender}}</p>
+                      <router-link :to="{ name: 'Details', params: {moreDetails: character ,arrayList:characters, index: index}}"><span>Read More...</span></router-link>
+                </div>
             </div>
-         <div class="router-link"><router-link to="/characters"><button>VIEW MORE</button></router-link></div>
+            </div>     
+         <div class="router-link"><router-link to="/characters"><button>VIEW ALL</button></router-link></div>
           </div>
     </div>
 </template>
@@ -41,6 +43,10 @@ export default {
   justify-content: center;
   align-items: center;
   padding-top: 50px;
+  margin-top: 100px;
+}
+h1{
+  color: rgb(34, 33, 33);
 }
 hr {
   width: 100px;
@@ -68,6 +74,7 @@ hr {
   justify-content: center;
   align-items: center;
   padding: 20px;
+  font-size: 13px
 }
 img {
   width: 300px;
