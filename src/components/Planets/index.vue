@@ -5,11 +5,8 @@
         <h1>Popular Planets</h1>
         <div class="flex-container">
             <div class="planet" v-for="(planet, index) in planets" v-if="index <= 2" :key="index" >
-              <div class="space">
-              <div class="image"><img alt="planet-img" :src="planet.imgUrl"/>
-                <div class="name"><span>{{planet.name}}</span></div>
-              </div>
-              </div>
+              <img alt="planet-img" :src="planet.imgUrl"/>
+              <span>{{planet.name}}</span>
             </div>       
         </div>
         <div class="navigation">
@@ -107,25 +104,18 @@ hr {
 }
 .planet{
   flex: 0 0 300px;
-  height: 300px;
   padding: 10px;
   box-sizing: border-box;
+  margin: 20px;
+  background-color: rgba(221, 220, 220, 0.521);
+  border: 1px solid rgb(34, 33, 33)
+}
+.planet span{
+  color: rgb(34, 33, 33)
 }
 img{
   height: 300px;
   width: 300px;
-}
-space{
-  height: 350px;
-}
-.image{
-  height: 350px;
-  width: 350px;
-}
-.name{
-  height: 350px;
-  width: 350px;
-  background-color: white;
 }
 .navigation{
   display: flex;

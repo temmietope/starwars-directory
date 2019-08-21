@@ -4,13 +4,15 @@
         <hr/>
           <div v-if="planets.length=== 0">No Starwars Planet matches your search</div>
         <div v-else class="flex-container">
-            <div class="planet" v-for="(planet, index) in planets" v-if="index <= 2" :key="index" >
-              <div class="space">
-              <div class="image"><img alt="planet-img" :src="planet.imgUrl"/>
-                <div class="name"><span>{{planet.name}}</span></div>
-              </div>
-              </div>
-            </div>       
+            <div class="planet" v-for="(planet, index) in planetsA" :key="index" >
+              <img alt="planet-img" :src="planet.imgUrl"/>
+              <router-link :to="{ name: 'Details', params: {moreDetails: planet ,arrayList:planets, index: index}}"><span>{{planet.name}}</span></router-link>
+            </div>  
+            <div>
+              <button @click="one">1</button>
+              <button @click="two">2</button>
+              <button @click="three">3</button>
+            </div>     
         </div>
     </div>
 </template>
@@ -18,13 +20,33 @@
 <script>
 export default {
   name: "Planets",
+  data() {
+    return {
+      planetsArray: [],
+      planetsA: []
+    };
+  },
   props: {
     planets: Array
   },
   methods: {
     getImgUrl(index) {
       return require("../../assets/planet-" + index + ".jpg");
+    },
+    one() {
+      this.planetsA = this.planetsArray.slice(0, 3);
+    },
+    two() {
+      this.planetsA = this.planetsArray.slice(3, 6);
+    },
+    three() {
+      this.planetsA = this.planetsArray.slice(6, 9);
     }
+  },
+  mounted() {
+    this.planetsArray = this.planets;
+    this.planetsA = this.planetsArray.slice(0, 3);
+    console.log(this.planetsA);
   }
 };
 </script>
@@ -35,6 +57,7 @@ export default {
   justify-content: center;
   align-items: center;
   padding-top: 50px;
+  margin-top: 30px;
 }
 h1 {
   color: rgb(34, 33, 33);
@@ -52,27 +75,23 @@ hr {
   justify-content: center;
   align-items: center;
 }
-.planet{
+.planet {
   flex: 0 0 300px;
-  height: 300px;
   padding: 10px;
   box-sizing: border-box;
+  margin: 20px;
+  background-color: rgba(221, 220, 220, 0.521);
+  border: 1px solid rgb(34, 33, 33);
 }
-img{
+img {
   height: 300px;
   width: 300px;
 }
-space{
-  height: 350px;
-}
-.image{
-  height: 350px;
-  width: 350px;
-}
-.name{
-  height: 350px;
-  width: 350px;
-  background-color: white;
+.planet span {
+  font-weight: bolder;
+  font-size: 20px;
+  padding: 5px;
+  color: rgb(34, 33, 33);
 }
 </style>
 
