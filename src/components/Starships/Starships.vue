@@ -32,7 +32,9 @@ export default {
   props: {
     starships: Array
   },
-  methods: {}
+  mounted(){
+    console.log(this.starships)
+  }
 };
 </script>
 
