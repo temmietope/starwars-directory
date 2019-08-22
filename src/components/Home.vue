@@ -2,9 +2,11 @@
   <div class="home">
     <Header @searchItem= "results"/>
     <div class="body">
-      <Starships :starships="starships"/>
-    <Planets :planets="planets"/>
-    <Characters :characters="characters"/>
+      <div class="wrapper">
+        <Starships :starships="starships"/>
+        <Planets :planets="planets"/>
+        <Characters :characters="characters"/>
+      </div>
   </div>
   </div>
 </template>
@@ -120,13 +122,6 @@ export default {
         a.imgUrl = this.getCharacterImgUrl();
       });
       this.characters = charactersB;
-      // if(!localStorage.getItem('searchedCharacter').length){
-      //   localStorage.setItem('searchedCharacters', JSON.stringify(charactersB))
-      // }
-      // else{
-      //   const prev = localStorage.getItem('searchedCharacters')
-      //   localStorage.setItem("searchedCharacters", JSON.stringify([...prev, charactersB]));
-      // }
     },
 
     async planetsSearch(searched) {
@@ -140,13 +135,6 @@ export default {
         a.imgUrl = this.getPlanetImgUrl();
       });
       this.planets = planetsB;
-      // if(!localStorage.getItem('searchedPlanets').length){
-      //   localStorage.setItem('searchedPlanets', JSON.stringify(planetsB))
-      // }
-      // else{
-      //   const prev = localStorage.getItem('searchedPlanets')
-      //   localStorage.setItem("searchedPlanets", JSON.stringify([...prev, planetsB]));
-      // }
     },
 
     async starshipsSearch(searched) {
@@ -160,13 +148,6 @@ export default {
         a.imgUrl = this.getStarshipImgUrl();
       });
       this.starships = starshipsB;
-      // if(!localStorage.getItem('searchedStarships').length){
-      //   localStorage.setItem('searchedStarships', JSON.stringify(starshipsB))
-      // }
-      // else{
-      //   const prev = localStorage.getItem('searchedStarships')
-      //   localStorage.setItem("searchedStarships", JSON.stringify([...prev, starshipsB]));
-      // }
     },
     results(searched) {
       console.log(searched);
@@ -185,4 +166,10 @@ export default {
 </script>
 
 <style scoped>
+.body{
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center
+}
 </style>
