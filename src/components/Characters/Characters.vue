@@ -43,7 +43,7 @@ export default {
   justify-content: center;
   align-items: center;
   padding-top: 50px;
-  margin-top: 100px;
+  margin-top: 30px;
 }
 h1{
   color: rgb(34, 33, 33);
