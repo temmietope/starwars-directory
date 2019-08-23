@@ -2,18 +2,21 @@
     <div>
       <Header/>
       <div class="characters">
-          <div><h1>Popular Characters</h1></div>
-         
+          <div><h1>StarWars Characters</h1></div>
           <div class="dropdown">
-            <button class="dropbtn">Dropdown</button>
-              <div class="dropdown-content">
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
-              </div>
+            <span>Filter</span>
+            <b-dropdown id="dropdown-right" right text="Gender" class="m-2">
+              <b-dropdown-item @click="filterMales">Male</b-dropdown-item>
+              <b-dropdown-item @click="filterFemales">Female</b-dropdown-item>
+              <b-dropdown-item @click="filterRobots">Robots</b-dropdown-item>
+              <b-dropdown-divider></b-dropdown-divider>
+              <b-dropdown-item  @click="showall">All Characters</b-dropdown-item>
+            </b-dropdown>
           </div>
+
+
           <div class="flex-container">
-            <div class="character" v-for="(character, index) in characters" :key="index">
+            <div class="character" v-for="(character, index) in filteredCharacters" :key="index">
             <div><img alt="character-img" :src="character.imgUrl"/></div>
             <div class="character-details">
               <p>Name: {{character.name}}</p>
@@ -42,6 +45,7 @@ export default {
   data() {
     return {
       characters: [],
+      filteredCharacters: [],
       allCharactersFromAPI: ""
     };
   },
@@ -55,6 +59,8 @@ export default {
         a.imgUrl = this.getImageUrl();
       });
       this.characters = charactersA;
+      this.filteredCharacters = this.characters;
+      // localStorage.setItem("characters1", JSON.stringify(charactersA));
     },
     async loadNextPage() {
       let nextPage = this.allCharactersFromAPI["next"];
@@ -66,6 +72,7 @@ export default {
         a.imgUrl = this.getImageUrl();
       });
       this.characters = charactersA;
+      this.filteredCharacters = this.characters;
     },
     async loadPreviousPage() {
       let previousPage = this.allCharactersFromAPI["previous"];
@@ -77,6 +84,7 @@ export default {
         a.imgUrl = this.getImageUrl();
       });
       this.characters = characterssA;
+      this.filteredCharacters = this.characters;
     },
     getImageUrl() {
       let rand = Math.round(Math.random(2));
@@ -92,6 +100,30 @@ export default {
         character4
       ];
       return characterImageUrl[rand];
+    },
+    filterMales() {
+      const maleCharacters = this.characters.filter(
+        character => character.gender === "male"
+      );
+      console.log(maleCharacters);
+      return (this.filteredCharacters = maleCharacters);
+    },
+    filterFemales() {
+      const femaleCharacters = this.characters.filter(
+        character => character.gender === "female"
+      );
+      console.log(femaleCharacters);
+      return (this.filteredCharacters = femaleCharacters);
+    },
+    filterRobots() {
+      const robotCharacters = this.characters.filter(
+        character => character.gender === "n/a"
+      );
+      console.log(robotCharacters);
+      return (this.filteredCharacters = robotCharacters);
+    },
+    showall() {
+      return (this.filteredCharacters = this.characters);
     }
   },
   mounted() {
@@ -129,23 +161,23 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 20px;
-  font-size: 13px
+  font-size: 13px;
 }
 img {
   width: 300px;
   height: 380px;
 }
-span{
+span {
   color: rgba(64, 64, 185, 0.856);
   font-weight: bolder;
 }
-.navigation{
+.navigation {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 20px;
 }
-.navigation button{
+.navigation button {
   border: none;
   color: rgb(203, 221, 221);
   background-color: rgb(93, 93, 148);
@@ -153,51 +185,10 @@ span{
   margin: 10px;
   border-radius: 5px;
 }
-
-/* Style The Dropdown Button */
-.dropbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-/* The container <div> - needed to position the dropdown content */
 .dropdown {
-  position: relative;
-  display: inline-block;
+  margin: 25px auto 25px 200px;
 }
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
+.dropdown span {
   color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-  background-color: #3e8e41;
 }
 </style>
