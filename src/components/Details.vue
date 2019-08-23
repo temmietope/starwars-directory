@@ -98,6 +98,7 @@ export default {
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
+  margin: 30px;
 }
 .wrapper{
   width: 60%;
@@ -128,8 +129,8 @@ export default {
   margin: 0 50px;
   padding: 5px 20px;
   border-radius: 5px;
-  border: 1px midnightblue solid;
   background-color: rgba(128, 128, 128, 0.452);
+  border: none
 }
 .intro{
   margin-bottom: 20px;
@@ -149,5 +150,31 @@ export default {
 article{
   text-justify: newspaper;
   box-sizing: border-box
+}
+@media screen and (max-width: 768px){
+  .header{
+    height: 430px;
+    margin-bottom: 30px;
+    width: 100%
+  }
+  .header img {
+    height: 300px;
+    width: 100%
+  }
+  .header span{
+    font-size: 1.2em;
+  }
+  .header .btn button{
+    padding: 5px 15px;
+    border-radius: 3px;
+  }
+  .intro p{
+    font-size: 16px;
+  }
+  article{
+    font-size: 14px;
+    text-justify: newspaper;
+    box-sizing: border-box
+  }
 }
 </style>

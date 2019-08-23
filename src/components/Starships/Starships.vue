@@ -52,9 +52,9 @@ h1 {
   margin-bottom: none;
 }
 h5 {
-  padding: 10px;
+  padding: 10px 0;
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: bolder;
 }
 p {
@@ -103,6 +103,39 @@ img {
   padding: 7px 150px;
   border: 1.5px solid rgba(29, 29, 151, 0.863);
   background-color: azure;
+}
+@media screen and (width: 768px){
+  .starship{
+    margin: 20px
+  }
+}
+@media screen and (max-width: 768px){
+  h1 {
+  font-size: 20px
+  }
+  hr{
+    margin: 0
+  }
+  p {
+    font-size: 10px
+  }
+  img {
+    height: 230px;
+    width: 230px;
+  }
+  .starship {
+    flex: 0 0 200px;
+    height: 380px;
+    margin: 20px 0;
+    padding: 10px;
+  }
+  .btn button {
+    padding: 9px 12px;
+    font-size: 12px;
+  }
+  .router-link button{
+    padding: 7px 70px;
+  }
 }
 </style>
 

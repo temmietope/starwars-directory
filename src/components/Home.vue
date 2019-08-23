@@ -166,10 +166,15 @@ export default {
 </script>
 
 <style scoped>
+.home{
+  margin-bottom: 50px
+}
 .body{
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
-  align-items: center
+  align-items: center;
+  margin-bottom: 50px;
+  margin: auto;
 }
 </style>

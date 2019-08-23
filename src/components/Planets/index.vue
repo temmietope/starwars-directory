@@ -2,16 +2,17 @@
     <div>
     <Header/>
     <div class="planets">
-        <h1>Popular Planets</h1>
+        <h1>StarWars Planets</h1>
+        <hr/>
         <div class="flex-container">
-            <div class="planet" v-for="(planet, index) in planets" v-if="index <= 2" :key="index" >
-              <img alt="planet-img" :src="planet.imgUrl"/>
-              <span>{{planet.name}}</span>
+            <div class="planet" v-for="(planet, index) in planets" :key="index" >
+              <router-link :to="{ name: 'Details', params: {moreDetails: planet ,arrayList:planets, index: index}}"><img alt="planet-img" :src="planet.imgUrl"/></router-link>
+              <router-link :to="{ name: 'Details', params: {moreDetails: planet ,arrayList:planets, index: index}}"><span>{{planet.name}}</span></router-link>
             </div>       
         </div>
         <div class="navigation">
-          <button @click="loadPreviousPage" :disabled="allPlanetsFromAPI['previous']===null">prev</button> 
-          <button @click="loadNextPage" :disabled="allPlanetsFromAPI['next']===null" >next</button>
+          <button @click="loadPreviousPage" :disabled="allPlanetsFromAPI['previous']===null"><i class="fas fa-arrow-left"></i></button> 
+          <button @click="loadNextPage" :disabled="allPlanetsFromAPI['next']===null" ><i class="fas fa-arrow-right"></i></button>
         </div>
          
     </div>
@@ -108,10 +109,11 @@ hr {
   box-sizing: border-box;
   margin: 20px;
   background-color: rgba(221, 220, 220, 0.521);
-  border: 1px solid rgb(34, 33, 33)
+  border: 1px solid rgb(34, 33, 33);
+  border-radius: 7px;
 }
 .planet span{
-  color: rgb(34, 33, 33)
+  color: rgb(34, 33, 33);
 }
 img{
   height: 300px;
@@ -125,10 +127,22 @@ img{
 }
 .navigation button{
   border: none;
-  color: rgb(203, 221, 221);
-  background-color: rgb(93, 93, 148);
+  background-color: rgba(128, 128, 128, 0.452);
+  color: rgb(20, 20, 20);
   padding: 10px 15px;
   margin: 10px;
   border-radius: 5px;
+}
+@media screen and (max-width: 320px){
+  h1 {
+    font-size: 20px
+  }
+  .planet {
+    flex: 0 0 200px;
+  }
+  img{
+    height: 200px;
+    width: 200px;
+  }
 }
 </style>

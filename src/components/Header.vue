@@ -90,4 +90,30 @@ img {
   padding-left: 10px;
   color: grey;
 }
+@media screen and (max-width: 768px){
+  .header{
+    width: 100%;
+  }
+  .form-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+  }
+  img {
+    width: 100px;
+    height: 50px;
+  }
+  .short-note{
+    font-size: 20px;
+    width: 80%
+  }
+  .search input[type="text"] {
+    height: 30px;
+    width: 300px;
+    border-radius: 3px;
+    font-size: 15px;
+    padding-left: 5px;
+  }
+}
 </style>

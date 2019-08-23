@@ -6,7 +6,7 @@
         <div v-else>
           <div class="flex-container">
             <div class="planet" v-for="(planet, index) in planetsArray" :key="index" >
-              <img alt="planet-img" :src="planet.imgUrl"/>
+              <router-link :to="{ name: 'Details', params: {moreDetails: planet ,arrayList:planets, index: index}}"><img alt="planet-img" :src="planet.imgUrl"/></router-link>
               <router-link :to="{ name: 'Details', params: {moreDetails: planet ,arrayList:planets, index: index}}"><span>{{planet.name}}</span></router-link>
             </div>  
           </div>
@@ -93,6 +93,7 @@ hr {
   margin: 20px;
   background-color: rgba(221, 220, 220, 0.521);
   border: 1px solid rgb(34, 33, 33);
+  border-radius: 7px;
 }
 img {
   height: 300px;
@@ -109,13 +110,34 @@ img {
   background-color: inherit;
   margin: 10px;
 }
-.planets button i :focus {
-  color: red;
-}
 .router-link button{
   padding: 7px 150px;
   border: 1.5px solid rgba(29, 29, 151, 0.863);
   background-color: azure;
+}
+@media screen and (max-width: 768px){
+  h1 {
+    font-size: 20px
+  }
+  hr{
+    margin: 0
+  }
+  .planet {
+    flex: 0 0 200px;
+    margin: 20px;
+  }
+  img {
+    height: 200px;
+    width: 200px;
+  }
+  .planet span {
+    font-size: 15px;
+  }
+  .router-link button{
+    padding: 7px 70px;
+    border: 1.5px solid rgba(29, 29, 151, 0.863);
+    background-color: azure;
+  }
 }
 </style>
 

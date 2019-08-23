@@ -162,10 +162,32 @@ img {
 .btn button {
   padding: 13px 17px;
   font-size: 16px;
-  background-color: rgba(29, 29, 151, 0.863);
-  color: rgb(215, 226, 226);
+  background-color: rgba(128, 128, 128, 0.452);
+  color: rgb(20, 20, 20);
   border: none;
   border-radius: 5px;
+}
+@media screen and (max-width: 320px){
+  h1 {
+  font-size: 20px
+  }
+  p {
+    font-size: 10px
+  }
+  img {
+    height: 230px;
+    width: 230px;
+  }
+  .starship {
+    flex: 0 0 200px;
+    height: 380px;
+    margin: 20px 0;
+    padding: 10px;
+  }
+  .btn button {
+    padding: 9px 12px;
+    font-size: 12px;
+  }
 }
 </style>
 

@@ -10,11 +10,11 @@
               <div class="character" v-for="(character, index) in characters" v-if="index <= 3" :key="index" >
                 <div><img alt="character-img" :src="character.imgUrl"/></div>
                 <div class="character-details">
-                  <p>Name: {{character.name}}</p>
+                  <p class="name">Name: {{character.name}}</p>
                   <p>Birth-year: {{character.birth_year}}</p>
                   <p v-if="character.gender ==='n/a'">Robot</p>
                   <p v-else>Gender: {{character.gender}}</p>
-                      <router-link :to="{ name: 'Details', params: {moreDetails: character ,arrayList:characters, index: index}}"><span>Read More...</span></router-link>
+                  <router-link :to="{ name: 'Details', params: {moreDetails: character ,arrayList:characters, index: index}}"><span>Read More...</span></router-link>
                 </div>
             </div>
             </div>     
@@ -65,6 +65,7 @@ hr {
   flex: 0 0 500px;
   height: 380px;
   margin: 20px;
+  border-radius: 7px;
   background-color: rgba(221, 220, 220, 0.521);
   box-sizing: border-box;
 }
@@ -75,6 +76,9 @@ hr {
   align-items: center;
   padding: 20px;
   font-size: 13px
+}
+.character-details p .name{
+  font-weight: bolder
 }
 img {
   width: 300px;
@@ -89,6 +93,38 @@ span{
   padding: 7px 150px;
   border: 1.5px solid rgba(29, 29, 151, 0.863);
   background-color: azure;
+}
+@media screen and (max-width: 768px){
+  h1{
+    font-size: 20px;
+  }
+  hr{
+    margin: 0
+  }
+  .character {
+    flex: 0 0 200px;
+    display: flex;
+    flex-flow: column;
+    height: 350px;
+    padding: 20px;
+  }
+  .character-details {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 9px
+  }
+  .character-details p .name{
+    font-weight: bolder
+  }
+  img {
+    width: 180px;
+    height: 180px;
+  }
+  .router-link button{
+    padding: 7px 70px;
+  }
 }
 </style>
 

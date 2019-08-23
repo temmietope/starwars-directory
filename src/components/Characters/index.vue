@@ -2,10 +2,13 @@
     <div>
       <Header/>
       <div class="characters">
-          <div><h1>StarWars Characters</h1></div>
+          <div>
+            <h1>StarWars Characters</h1>
+            <hr/>
+          </div>
           <div class="dropdown">
             <span>Filter</span>
-            <b-dropdown id="dropdown-right" right text="Gender" class="m-2">
+            <b-dropdown id="dropdown-right" size="sm" right text="Gender" class="m-2">
               <b-dropdown-item @click="filterMales">Male</b-dropdown-item>
               <b-dropdown-item @click="filterFemales">Female</b-dropdown-item>
               <b-dropdown-item @click="filterRobots">Robots</b-dropdown-item>
@@ -19,7 +22,7 @@
             <div class="character" v-for="(character, index) in filteredCharacters" :key="index">
             <div><img alt="character-img" :src="character.imgUrl"/></div>
             <div class="character-details">
-              <p>Name: {{character.name}}</p>
+              <p class="name">Name: {{character.name}}</p>
               <p>Birth-year: {{character.birth_year}}</p>
               <p v-if="character.gender ==='n/a'">Robot</p>
               <p v-else>Gender: {{character.gender}}</p>
@@ -141,6 +144,12 @@ export default {
   align-items: center;
   padding-top: 50px;
 }
+hr {
+  width: 100px;
+  height: 6px;
+  background-color: rgb(34, 33, 33);
+  padding-top: none;
+}
 .flex-container {
   display: flex;
   flex-wrap: wrap;
@@ -154,6 +163,7 @@ export default {
   margin: 20px;
   background-color: rgba(221, 220, 220, 0.521);
   box-sizing: border-box;
+  border-radius: 7px;
 }
 .character-details {
   display: flex;
@@ -170,6 +180,7 @@ img {
 span {
   color: rgba(64, 64, 185, 0.856);
   font-weight: bolder;
+  margin-right: 10px;
 }
 .navigation {
   display: flex;
@@ -179,8 +190,8 @@ span {
 }
 .navigation button {
   border: none;
-  color: rgb(203, 221, 221);
-  background-color: rgb(93, 93, 148);
+  background-color: rgba(128, 128, 128, 0.452);
+  color: rgb(20, 20, 20);
   padding: 10px 15px;
   margin: 10px;
   border-radius: 5px;
@@ -190,5 +201,38 @@ span {
 }
 .dropdown span {
   color: black;
+}
+@media screen and (max-width: 768px){
+   h1{
+    font-size: 20px;
+  }
+  .character {
+    flex: 0 0 200px;
+    display: flex;
+    flex-flow: column;
+    height: 350px;
+    padding: 20px;
+  }
+  .character-details {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 9px
+  }
+  .character-details p .name{
+    font-weight: bolder
+  }
+  img {
+    width: 180px;
+    height: 180px;
+  }
+  .dropdown {
+    margin: 0;
+    text-align: center
+  }
+  .navigation {
+    margin: 0;
+  }
 }
 </style>
