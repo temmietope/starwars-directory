@@ -6,7 +6,9 @@
     "serve": "vue-cli-service serve",
     "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "heroku-prebuild": "export NPM_CONFIG_PRODUCTION=false; export NODE_ENV=; NPM_CONFIG_PRODUCTION=false NODE_ENV=development npm install --only=dev --dev",
+    "heroku-postbuild": "export NPM_CONFIG_PRODUCTION"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
