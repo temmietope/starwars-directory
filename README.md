@@ -1,7 +1,7 @@
 # starwars-directory
 A starwars directory using the SWAPI. 
 
-### Installation & Setup
+## Installation & Setup
 
   Clone this repository and install its dependencies.
 
@@ -19,10 +19,7 @@ A starwars directory using the SWAPI.
 
   Or you can view online on [https://starwars-directory.netlify.com/](https://starwars-directory.netlify.com/)
 
-### Screenshots
-
-##### Details page
-![](./screenshots/details.png)
+## Screenshots
 
 ##### Home page
 ![](./screenshots/home-page.png)
@@ -36,6 +33,9 @@ A starwars directory using the SWAPI.
 ##### Starships page
 ![](./screenshots/starwars-starships.png)
 
-### Repository
+##### Details page
+![](./screenshots/details.png)
+
+## Repository
 
 [https://github.com/temmietope/starwars-directory](https://github.com/temmietope/starwars-directory)
