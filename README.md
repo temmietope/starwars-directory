@@ -21,10 +21,19 @@ A starwars directory using the SWAPI.
 
 ### Screenshots
 
+##### Details page
 ![](./screenshots/details.png)
+
+##### Home page
 ![](./screenshots/home page.png)
+
+##### Characters page
 ![](./screenshots/starwars characters.png)
+
+##### Planets page
 ![](./screenshots/starwars planets.png) 
+
+##### Starships page
 ![](./screenshots/starwars starships.png)
 
 ### Repository
