@@ -21,9 +21,6 @@ A starwars directory using the SWAPI.
 
 ### Screenshots
 
-##### Details page
-![](./screenshots/details.png)
-
 ##### Home page
 ![](./screenshots/home page.png)
 
